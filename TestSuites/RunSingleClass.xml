@@ -1,0 +1,18 @@
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite name="loginModuleTest" verbose="1">
+    <test name="LoginModuleRegressionTest">
+        <classes>
+            <class name="TestInitialization"/>
+            <class name="LoginTest">
+               <!-- <methods>
+                    <include name="testSpecificMethod"/>
+                    <exclude name="testAnotherMethod"/>
+                </methods>  -->
+            </class>
+        </classes>
+    </test>
+    <listeners>
+        <listener class-name="lisneras.ExtentReportListener" />
+    </listeners>
+    <parameter name="report.config" value="src/test/resources/extent-config.xml" />
+</suite>
