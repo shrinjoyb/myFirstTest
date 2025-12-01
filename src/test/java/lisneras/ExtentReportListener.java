@@ -5,16 +5,20 @@ import com.aventstack.extentreports.ExtentTest;
 import com.aventstack.extentreports.MediaEntityBuilder;
 import com.aventstack.extentreports.reporter.ExtentSparkReporter;
 import com.aventstack.extentreports.Status;
+import org.openqa.selenium.OutputType;
+import org.openqa.selenium.TakesScreenshot;
 import org.testng.ITestContext;
 import org.testng.ITestListener;
 import org.testng.ITestResult;
 import shared.sharedData;
 
+import static shared.sharedData.driver;
+
 
 public class ExtentReportListener implements ITestListener {
     private static ExtentReports extent;
     private static ThreadLocal<ExtentTest> extentTest = new ThreadLocal<>();
-
+    TakesScreenshot ts = (TakesScreenshot) driver;
     // Initialize ExtentReports before the test suite starts
     @Override
     public void onStart(ITestContext context) {
@@ -40,14 +44,14 @@ public class ExtentReportListener implements ITestListener {
     public void onTestSuccess(ITestResult result) {
         extentTest.get().log(Status.PASS, "Test Passed");
 
-        extentTest.get().log(Status.PASS, "Screenshot", MediaEntityBuilder.createScreenCaptureFromPath(com.utils.Evidance.takeScreenshot(sharedData.driver)).build());
+      //  extentTest.get().log(ts.getScreenshotAs(OutputType.FILE);
         //extentTest.get().
     }
 
     @Override
     public void onTestFailure(ITestResult result) {
         extentTest.get().log(Status.FAIL, "Test Failed: " + result.getThrowable());
-        extentTest.get().log(Status.FAIL, com.utils.Evidance.takeScreenshot(sharedData.driver));
+    //    extentTest.get().log(Status.FAIL, com.utils.Evidance.takeScreenshot(driver));
 
         // Optionally, add screenshots on failure
     }
@@ -55,7 +59,7 @@ public class ExtentReportListener implements ITestListener {
     @Override
     public void onTestSkipped(ITestResult result) {
         extentTest.get().log(Status.SKIP, "Test Skipped: " + result.getThrowable());
-        extentTest.get().log(Status.SKIP, com.utils.Evidance.takeScreenshot(sharedData.driver));
+      //  extentTest.get().log(Status.SKIP, com.utils.Evidance.takeScreenshot(driver));
 
     }
 

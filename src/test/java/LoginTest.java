@@ -15,7 +15,7 @@ import org.testng.annotations.Test;
 
 import java.io.IOException;
 
-import static com.utils.Evidance.takeScreenshot;
+//import static com.utils.Evidance.takeScreenshot;
 @Listeners(ExtentReportListener.class)
 public class LoginTest
 {
